@@ -1,3 +1,3 @@
-# Dev Container supporting Datascince with Clojure
+# Dev Container supporting Datascience with Clojure
 
 Clojure + python + R included
