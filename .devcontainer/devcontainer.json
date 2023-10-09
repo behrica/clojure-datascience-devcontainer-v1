@@ -33,7 +33,9 @@
 			]
 		}
 	},
-
+"appPort": [
+		"12345:12345", // will make container port 12345 available as 12345 on remote host (which will be further tunneled to 12345 on local machine)
+	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	//"postCreateCommand": ""
