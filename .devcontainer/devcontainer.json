@@ -5,8 +5,6 @@
 
 		},
 
-	//if you want to run a repl inside container
-	//"runArgs": [ "-p", "12345:12345" ],
 
     "features": {
 	    "ghcr.io/devcontainers-contrib/features/clojure-asdf:2": {},
@@ -16,32 +14,20 @@
 
 
 },
-
-	//Configure tool-specific properties.
+    "forwardPorts": ["12345","7777"],
 	"customizations": {
-		// Configure properties specific to VS Code.
 		"vscode": {
-			// Set *default* container specific settings.json values on container create.
 			"settings": { 
 			},
 			"extensions": 
 			[
-			// Add the IDs of extensions you want installed when the container is created.
 				"vscjava.vscode-java-pack",
 				"borkdude.clj-kondo",
 				"betterthantomorrow.calva"
 			]
 		}
 	},
-"appPort": [
-		"12345:12345", // will make container port 12345 available as 12345 on remote host (which will be further tunneled to 12345 on local machine)
-	],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	//"postCreateCommand": ""
-
-	//"postStartCommand": "",
-
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode"
+	"remoteUser": "vscode",
+	"postStartCommand": "/home/vscode/.asdf/shims/clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,\"1.0.0\"},cider/cider-nrepl {:mvn/version,\"0.28.5\"}}}' -M:dev:test:default -m nrepl.cmdline --middleware \"[cider.nrepl/cider-middleware]\""
 }
